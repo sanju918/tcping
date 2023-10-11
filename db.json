@@ -1,0 +1,37 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Going for walk",
+      "completed": false
+    },
+    {
+      "id": 2,
+      "title": "Watching Movie",
+      "completed": true
+    },
+    {
+      "title": "Writing Program",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "title": "Listening Songs",
+      "completed": true,
+      "id": 6
+    },
+    {
+      "title": "Charging Phone",
+      "completed": false,
+      "id": 8
+    }
+  ],
+  "tshoot": {
+    "pings_summary": { "max": 100, "min": 28, "avg": 70 },
+    "src_debug_vms": { "ip": "192.168.1.1", "name": "test-vm" },
+    "pings": [
+      { "max": 100, "min": 90, "avg": 95 },
+      { "max": 50, "min": 30, "avg": 40 }
+    ]
+  }
+}
