@@ -27,7 +27,7 @@
     }
   ],
   "tshoot": {
-    "pings_summary": { "max": 100, "min": 28, "avg": 70 },
+    "pings_summary": { "max": 10, "min": 4, "avg": 7 },
     "src_debug_vms": { "ip": "192.168.1.1", "name": "test-vm" },
     "pings": [
       { "max": 100, "min": 90, "avg": 95 },

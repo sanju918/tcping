@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useGetTSQuery } from "./api/tsApi";
-import { result } from "lodash";
+import { TsSummary } from "./components/TsSummary";
+
+const initialTsSummary = {
+  max: 0,
+  min: 0,
+  avg: 0,
+};
 
 export const Ts = () => {
-  const [ts, setTs] = useState("");
+  const [tcpSummary, setTcpSummary] = useState(initialTsSummary);
   const [skip, setSkip] = useState(true);
   const {
     data: tss,
@@ -39,27 +45,38 @@ export const Ts = () => {
     }
   }, [isSuccess, tss, count]);
 
-  console.log(resultArray);
-
   return (
-    <div className="App">
-      <h1>TS</h1>
+    <div className="App p-4">
+      <h1 className="text-2xl font-semibold mb-4">TS</h1>
       {content}
-      <button onClick={handleFetch}>Fetch</button>
-      <button onClick={handleRefetch} disabled={skip}>
+      <button
+        className="bg-blue-500 text-white font-semibold px-4 py-2 rounded"
+        onClick={handleFetch}
+      >
+        Fetch
+      </button>
+      <button
+        className={`m-1 bg-blue-500 text-white font-semibold px-4 py-2 rounded ${
+          skip ? "opacity-50 cursor-not-allowed" : ""
+        }`}
+        onClick={handleRefetch}
+        disabled={skip}
+      >
         Refetch
       </button>
-      <p>Count: {count}</p>
+      <div className="mb-4">
+        <TsSummary data={resultArray} />
+      </div>
+      <p className="text-sm">Count: {count}</p>
       <ul>
         {resultArray.map((result, index) => (
-          <li key={index}>
-            {
-              <ul>
-                {result.pings.map((ping, index) => (
-                  <li key={index}>{JSON.stringify(ping, null, 2)}</li>
-                ))}
-              </ul>
-            }
+          <li key={index} className="mt-2 border p-2 rounded">
+            {/* <pre>{JSON.stringify(result, null, 2)}</pre> */}
+            <p>
+              {(index + 1).toFixed(4)}# Reply from {result.src_debug_vms.ip}{" "}
+              latency:
+              {result.pings_summary.avg}
+            </p>
           </li>
         ))}
       </ul>
